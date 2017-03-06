@@ -71,7 +71,7 @@ int lsmash_setup_AudioSpecificConfig( lsmash_audio_summary_t *summary )
     param->streamType           = MP4SYS_STREAM_TYPE_AudioStream;
     int err = lsmash_set_mp4sys_decoder_specific_info( param, data, data_length );
     lsmash_free( data );
-    if( err < 0 || (err = lsmash_add_entry( &summary->opaque->list, cs )) < 0 )
+    if( err < 0 || (err = lsmash_list_add_entry( &summary->opaque->list, cs )) < 0 )
     {
         lsmash_destroy_codec_specific_data( cs );
         return err;
@@ -133,7 +133,7 @@ int lsmash_add_codec_specific_data( lsmash_summary_t *summary, lsmash_codec_spec
     lsmash_codec_specific_t *dup = isom_duplicate_codec_specific_data( specific );
     if( !dup )
         return LSMASH_ERR_NAMELESS;
-    if( lsmash_add_entry( &summary->opaque->list, dup ) < 0 )
+    if( lsmash_list_add_entry( &summary->opaque->list, dup ) < 0 )
     {
         lsmash_destroy_codec_specific_data( dup );
         return LSMASH_ERR_MEMORY_ALLOC;

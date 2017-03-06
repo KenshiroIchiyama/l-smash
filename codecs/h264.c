@@ -55,9 +55,9 @@ void lsmash_destroy_h264_parameter_sets
 {
     if( !param || !param->parameter_sets )
         return;
-    lsmash_remove_entries( param->parameter_sets->sps_list,    isom_remove_dcr_ps );
-    lsmash_remove_entries( param->parameter_sets->pps_list,    isom_remove_dcr_ps );
-    lsmash_remove_entries( param->parameter_sets->spsext_list, isom_remove_dcr_ps );
+    lsmash_list_remove_entries( param->parameter_sets->sps_list );
+    lsmash_list_remove_entries( param->parameter_sets->pps_list );
+    lsmash_list_remove_entries( param->parameter_sets->spsext_list );
     lsmash_free( param->parameter_sets );
     param->parameter_sets = NULL;
 }
@@ -80,9 +80,10 @@ void h264_cleanup_parser
 {
     if( !info )
         return;
-    lsmash_remove_entries( info->sps_list,   NULL );
-    lsmash_remove_entries( info->pps_list,   NULL );
-    lsmash_remove_entries( info->slice_list, NULL );
+    /* TODO: Check why these eliminators are set to NULL. */
+    lsmash_list_remove_entries( info->sps_list );
+    lsmash_list_remove_entries( info->pps_list );
+    lsmash_list_remove_entries( info->slice_list );
     lsmash_destroy_h264_parameter_sets( &info->avcC_param );
     lsmash_destroy_h264_parameter_sets( &info->avcC_param_next );
     lsmash_destroy_multiple_buffers( info->buffer.bank );
@@ -116,9 +117,9 @@ int h264_setup_parser
         lsmash_destroy_multiple_buffers( sb->bank );
         return LSMASH_ERR_MEMORY_ALLOC;
     }
-    lsmash_init_entry_list( info->sps_list );
-    lsmash_init_entry_list( info->pps_list );
-    lsmash_init_entry_list( info->slice_list );
+    lsmash_list_init( info->sps_list,   isom_remove_dcr_ps );
+    lsmash_list_init( info->pps_list,   isom_remove_dcr_ps );
+    lsmash_list_init( info->slice_list, isom_remove_dcr_ps );
     return 0;
 }
 
@@ -252,7 +253,7 @@ static h264_sps_t *h264_get_sps
     if( !sps )
         return NULL;
     sps->seq_parameter_set_id = sps_id;
-    if( lsmash_add_entry( sps_list, sps ) < 0 )
+    if( lsmash_list_add_entry( sps_list, sps ) < 0 )
     {
         lsmash_free( sps );
         return NULL;
@@ -280,7 +281,7 @@ static h264_pps_t *h264_get_pps
     if( !pps )
         return NULL;
     pps->pic_parameter_set_id = pps_id;
-    if( lsmash_add_entry( pps_list, pps ) < 0 )
+    if( lsmash_list_add_entry( pps_list, pps ) < 0 )
     {
         lsmash_free( pps );
         return NULL;
@@ -308,7 +309,7 @@ static h264_slice_info_t *h264_get_slice_info
     if( !slice )
         return NULL;
     slice->slice_id = slice_id;
-    if( lsmash_add_entry( slice_list, slice ) < 0 )
+    if( lsmash_list_add_entry( slice_list, slice ) < 0 )
     {
         lsmash_free( slice );
         return NULL;
@@ -2001,7 +2002,7 @@ int lsmash_append_h264_parameter_set
         isom_dcr_ps_entry_t *ps = isom_create_ps_entry( ps_data, ps_length );
         if( !ps )
             return LSMASH_ERR_MEMORY_ALLOC;
-        if( lsmash_add_entry( ps_list, ps ) < 0 )
+        if( lsmash_list_add_entry( ps_list, ps ) < 0 )
         {
             isom_remove_dcr_ps( ps );
             return LSMASH_ERR_MEMORY_ALLOC;
@@ -2038,7 +2039,7 @@ int lsmash_append_h264_parameter_set
         ps = isom_create_ps_entry( ps_data, ps_length );
         if( !ps )
             return LSMASH_ERR_MEMORY_ALLOC;
-        if( lsmash_add_entry( ps_list, ps ) < 0 )
+        if( lsmash_list_add_entry( ps_list, ps ) < 0 )
         {
             isom_remove_dcr_ps( ps );
             return LSMASH_ERR_MEMORY_ALLOC;
@@ -2063,7 +2064,7 @@ int lsmash_append_h264_parameter_set
         lsmash_free( rbsp_buffer );
         if( err < 0 )
         {
-            lsmash_remove_entry_tail( ps_list, isom_remove_dcr_ps );
+            lsmash_list_remove_entry_tail( ps_list );
             return err;
         }
         if( ps_list->entry_count == 1 )
@@ -2165,7 +2166,7 @@ static inline int h264_move_dcr_nalu_entry
         if( !dst_entry )
         {
             /* Move the parameter set. */
-            if( lsmash_add_entry( dst_ps_list, src_ps ) < 0 )
+            if( lsmash_list_add_entry( dst_ps_list, src_ps ) < 0 )
                 return LSMASH_ERR_MEMORY_ALLOC;
             src_entry->data = NULL;
         }
@@ -2517,7 +2518,7 @@ int h264_copy_codec_specific
                 lsmash_destroy_h264_parameter_sets( dst_data );
                 return LSMASH_ERR_MEMORY_ALLOC;
             }
-            if( lsmash_add_entry( dst_ps_list, dst_ps ) < 0 )
+            if( lsmash_list_add_entry( dst_ps_list, dst_ps ) < 0 )
             {
                 lsmash_destroy_h264_parameter_sets( dst_data );
                 isom_remove_dcr_ps( dst_ps );

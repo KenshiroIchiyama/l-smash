@@ -37,7 +37,7 @@
     .manager      = LSMASH_NON_EXISTING_BOX,                                 \
     .precedence   = 0,                                                       \
     .pos          = 0,                                                       \
-    .extensions   = { NULL },                                                \
+    .extensions   = isom_box_common_extension_list,                          \
     .size         = 0,                                                       \
     .type         = LSMASH_BOX_TYPE_INITIALIZER
 
@@ -51,6 +51,8 @@ static const lsmash_class_t isom_box_default_class =
 {
     "box_default"
 };
+
+extern const isom_box_common_extension_list;
 
 typedef isom_box_t isom_opaque_t;
 static const isom_box_t isom_opaque_box_default =

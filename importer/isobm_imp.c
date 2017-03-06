@@ -107,8 +107,8 @@ static int isobm_importer_get_accessunit( importer_t *importer, uint32_t track_n
             lsmash_delete_sample( sample );
             return LSMASH_ERR_NAMELESS;
         }
-        lsmash_remove_entry( importer->summaries, track_number, lsmash_cleanup_summary );
-        if( lsmash_add_entry( importer->summaries, summary ) < 0 )
+        lsmash_list_remove_entry( importer->summaries, track_number );
+        if( lsmash_list_add_entry( importer->summaries, summary ) < 0 )
         {
             lsmash_delete_sample( sample );
             lsmash_cleanup_summary( (lsmash_summary_t *)summary );
@@ -164,7 +164,7 @@ static int isobm_importer_probe( importer_t *importer )
             goto fail;
         }
         lsmash_summary_t *summary = lsmash_get_summary( root, isobm_imp->track_ID, 1 );
-        if( (err = lsmash_add_entry( importer->summaries, summary )) < 0 )
+        if( (err = lsmash_list_add_entry( importer->summaries, summary )) < 0 )
         {
             lsmash_cleanup_summary( (lsmash_summary_t *)summary );
             goto fail;

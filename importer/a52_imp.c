@@ -111,7 +111,7 @@ static lsmash_audio_summary_t *ac3_create_summary( ac3_info_t *info )
     }
     cs->data.unstructured = lsmash_create_ac3_specific_info( &info->dac3_param, &cs->size );
     if( !cs->data.unstructured
-     || lsmash_add_entry( &summary->opaque->list, cs ) < 0 )
+     || lsmash_list_add_entry( &summary->opaque->list, cs ) < 0 )
     {
         lsmash_cleanup_summary( (lsmash_summary_t *)summary );
         lsmash_destroy_codec_specific_data( cs );
@@ -260,7 +260,7 @@ static int ac3_importer_probe( importer_t *importer )
         err = LSMASH_ERR_NAMELESS;
         goto fail;
     }
-    if( lsmash_add_entry( importer->summaries, summary ) < 0 )
+    if( lsmash_list_add_entry( importer->summaries, summary ) < 0 )
     {
         lsmash_cleanup_summary( (lsmash_summary_t *)summary );
         err = LSMASH_ERR_MEMORY_ALLOC;
@@ -579,7 +579,7 @@ static lsmash_audio_summary_t *eac3_create_summary( eac3_importer_t *eac3_imp )
     }
     cs->data.unstructured = lsmash_create_eac3_specific_info( &info->dec3_param, &cs->size );
     if( !cs->data.unstructured
-     || lsmash_add_entry( &summary->opaque->list, cs ) < 0 )
+     || lsmash_list_add_entry( &summary->opaque->list, cs ) < 0 )
     {
         lsmash_cleanup_summary( (lsmash_summary_t *)summary );
         lsmash_destroy_codec_specific_data( cs );
@@ -617,7 +617,7 @@ static int eac3_importer_probe( importer_t *importer )
     if( importer->status != IMPORTER_EOF )
         importer->status = IMPORTER_OK;
     eac3_imp->au_number = 0;
-    if( lsmash_add_entry( importer->summaries, summary ) < 0 )
+    if( lsmash_list_add_entry( importer->summaries, summary ) < 0 )
     {
         lsmash_cleanup_summary( (lsmash_summary_t *)summary );
         err = LSMASH_ERR_MEMORY_ALLOC;

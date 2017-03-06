@@ -583,7 +583,7 @@ lsmash_file_t *lsmash_set_file
             if( !file->fragment )
                 goto fail;
             file->fragment->first_moof_pos = FIRST_MOOF_POS_UNDETERMINED;
-            file->fragment->pool = lsmash_create_entry_list();
+            file->fragment->pool = lsmash_list_create( isom_remove_sample_pool );
             if( !file->fragment->pool )
                 goto fail;
         }

@@ -276,7 +276,7 @@ static hevc_vps_t *hevc_get_vps
     if( !vps )
         return NULL;
     vps->video_parameter_set_id = vps_id;
-    if( lsmash_add_entry( vps_list, vps ) < 0 )
+    if( lsmash_list_add_entry( vps_list, vps ) < 0 )
     {
         lsmash_free( vps );
         return NULL;
@@ -304,7 +304,7 @@ static hevc_sps_t *hevc_get_sps
     if( !sps )
         return NULL;
     sps->seq_parameter_set_id = sps_id;
-    if( lsmash_add_entry( sps_list, sps ) < 0 )
+    if( lsmash_list_add_entry( sps_list, sps ) < 0 )
     {
         lsmash_free( sps );
         return NULL;
@@ -332,7 +332,7 @@ static hevc_pps_t *hevc_get_pps
     if( !pps )
         return NULL;
     pps->pic_parameter_set_id = pps_id;
-    if( lsmash_add_entry( pps_list, pps ) < 0 )
+    if( lsmash_list_add_entry( pps_list, pps ) < 0 )
     {
         lsmash_free( pps );
         return NULL;
@@ -2305,7 +2305,7 @@ int lsmash_append_hevc_dcr_nalu
         isom_dcr_ps_entry_t *ps = isom_create_ps_entry( ps_data, ps_length );
         if( !ps )
             return LSMASH_ERR_MEMORY_ALLOC;
-        if( lsmash_add_entry( ps_list, ps ) < 0 )
+        if( lsmash_list_add_entry( ps_list, ps ) < 0 )
         {
             isom_remove_dcr_ps( ps );
             return LSMASH_ERR_MEMORY_ALLOC;
@@ -2346,7 +2346,7 @@ int lsmash_append_hevc_dcr_nalu
         ps = isom_create_ps_entry( ps_data, ps_length );
         if( !ps )
             return LSMASH_ERR_MEMORY_ALLOC;
-        if( lsmash_add_entry( ps_list, ps ) < 0 )
+        if( lsmash_list_add_entry( ps_list, ps ) < 0 )
         {
             isom_remove_dcr_ps( ps );
             return LSMASH_ERR_MEMORY_ALLOC;
@@ -2628,7 +2628,7 @@ static int hevc_move_dcr_nalu_entry
         if( !dst_entry )
         {
             /* Move the parameter set. */
-            if( lsmash_add_entry( dst_ps_list, src_ps ) < 0 )
+            if( lsmash_list_add_entry( dst_ps_list, src_ps ) < 0 )
                 return LSMASH_ERR_MEMORY_ALLOC;
             src_entry->data = NULL;
         }
@@ -3074,7 +3074,7 @@ static inline int hevc_copy_dcr_nalu_array
             lsmash_destroy_hevc_parameter_arrays( dst_data );
             return LSMASH_ERR_MEMORY_ALLOC;
         }
-        if( lsmash_add_entry( dst_ps_list, dst_ps ) < 0 )
+        if( lsmash_list_add_entry( dst_ps_list, dst_ps ) < 0 )
         {
             lsmash_destroy_hevc_parameter_arrays( dst_data );
             isom_remove_dcr_ps( dst_ps );

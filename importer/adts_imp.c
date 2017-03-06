@@ -291,7 +291,7 @@ static lsmash_audio_summary_t *mp4sys_adts_create_summary
         return NULL;
     }
     lsmash_free( data );
-    if( lsmash_add_entry( &summary->opaque->list, specific ) < 0 )
+    if( lsmash_list_add_entry( &summary->opaque->list, specific ) < 0 )
     {
         lsmash_cleanup_summary( (lsmash_summary_t *)summary );
         lsmash_destroy_codec_specific_data( specific );
@@ -481,7 +481,7 @@ static int mp4sys_adts_probe
         goto fail;
     }
     /* importer status */
-    if( lsmash_add_entry( importer->summaries, summary ) < 0 )
+    if( lsmash_list_add_entry( importer->summaries, summary ) < 0 )
     {
         lsmash_cleanup_summary( (lsmash_summary_t *)summary );
         err = LSMASH_ERR_MEMORY_ALLOC;

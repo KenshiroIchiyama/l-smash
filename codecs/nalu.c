@@ -189,7 +189,7 @@ int nalu_get_dcr_ps
         isom_dcr_ps_entry_t *data = lsmash_malloc( sizeof(isom_dcr_ps_entry_t) );
         if( !data )
             return LSMASH_ERR_MEMORY_ALLOC;
-        if( lsmash_add_entry( list, data ) < 0 )
+        if( lsmash_list_add_entry( list, data ) < 0 )
         {
             lsmash_free( data );
             return LSMASH_ERR_MEMORY_ALLOC;

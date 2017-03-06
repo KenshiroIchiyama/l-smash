@@ -156,7 +156,7 @@ static int isom_add_chpl_entry( isom_chpl_t *chpl, isom_chapter_entry_t *chap_da
     }
     memcpy( data->chapter_name, chap_data->chapter_name, data->chapter_name_length );
     data->chapter_name[ data->chapter_name_length ] = '\0';
-    if( lsmash_add_entry( chpl->list, data ) < 0 )
+    if( lsmash_list_add_entry( chpl->list, data ) < 0 )
     {
         lsmash_free( data->chapter_name );
         lsmash_free( data );

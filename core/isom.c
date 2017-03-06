@@ -122,7 +122,7 @@ static int isom_add_elst_entry( isom_elst_t *elst, uint64_t segment_duration, in
     data->segment_duration = segment_duration;
     data->media_time       = media_time;
     data->media_rate       = media_rate;
-    if( lsmash_add_entry( elst->list, data ) < 0 )
+    if( lsmash_list_add_entry( elst->list, data ) < 0 )
     {
         lsmash_free( data );
         return LSMASH_ERR_MEMORY_ALLOC;
@@ -166,7 +166,7 @@ static int isom_add_stts_entry( isom_stbl_t *stbl, uint32_t sample_delta )
         return LSMASH_ERR_MEMORY_ALLOC;
     data->sample_count = 1;
     data->sample_delta = sample_delta;
-    if( lsmash_add_entry( stbl->stts->list, data ) < 0 )
+    if( lsmash_list_add_entry( stbl->stts->list, data ) < 0 )
     {
         lsmash_free( data );
         return LSMASH_ERR_MEMORY_ALLOC;
@@ -184,7 +184,7 @@ static int isom_add_ctts_entry( isom_stbl_t *stbl, uint32_t sample_count, uint32
         return LSMASH_ERR_MEMORY_ALLOC;
     data->sample_count  = sample_count;
     data->sample_offset = sample_offset;
-    if( lsmash_add_entry( stbl->ctts->list, data ) < 0 )
+    if( lsmash_list_add_entry( stbl->ctts->list, data ) < 0 )
     {
         lsmash_free( data );
         return LSMASH_ERR_MEMORY_ALLOC;
@@ -203,7 +203,7 @@ static int isom_add_stsc_entry( isom_stbl_t *stbl, uint32_t first_chunk, uint32_
     data->first_chunk              = first_chunk;
     data->samples_per_chunk        = samples_per_chunk;
     data->sample_description_index = sample_description_index;
-    if( lsmash_add_entry( stbl->stsc->list, data ) < 0 )
+    if( lsmash_list_add_entry( stbl->stsc->list, data ) < 0 )
     {
         lsmash_free( data );
         return LSMASH_ERR_MEMORY_ALLOC;
@@ -229,7 +229,7 @@ static int isom_add_stsz_entry( isom_stbl_t *stbl, uint32_t entry_size )
     /* found sample_size varies, create sample_size list */
     if( !stsz->list )
     {
-        stsz->list = lsmash_create_entry_list();
+        stsz->list = lsmash_list_create_simple();
         if( !stsz->list )
             return LSMASH_ERR_MEMORY_ALLOC;
         for( uint32_t i = 0; i < stsz->sample_count; i++ )
@@ -238,7 +238,7 @@ static int isom_add_stsz_entry( isom_stbl_t *stbl, uint32_t entry_size )
             if( !data )
                 return LSMASH_ERR_MEMORY_ALLOC;
             data->entry_size = stsz->sample_size;
-            if( lsmash_add_entry( stsz->list, data ) < 0 )
+            if( lsmash_list_add_entry( stsz->list, data ) < 0 )
             {
                 lsmash_free( data );
                 return LSMASH_ERR_MEMORY_ALLOC;
@@ -250,7 +250,7 @@ static int isom_add_stsz_entry( isom_stbl_t *stbl, uint32_t entry_size )
     if( !data )
         return LSMASH_ERR_MEMORY_ALLOC;
     data->entry_size = entry_size;
-    if( lsmash_add_entry( stsz->list, data ) < 0 )
+    if( lsmash_list_add_entry( stsz->list, data ) < 0 )
     {
         lsmash_free( data );
         return LSMASH_ERR_MEMORY_ALLOC;
@@ -268,7 +268,7 @@ static int isom_add_stss_entry( isom_stbl_t *stbl, uint32_t sample_number )
     if( !data )
         return LSMASH_ERR_MEMORY_ALLOC;
     data->sample_number = sample_number;
-    if( lsmash_add_entry( stbl->stss->list, data ) < 0 )
+    if( lsmash_list_add_entry( stbl->stss->list, data ) < 0 )
     {
         lsmash_free( data );
         return LSMASH_ERR_MEMORY_ALLOC;
@@ -285,7 +285,7 @@ static int isom_add_stps_entry( isom_stbl_t *stbl, uint32_t sample_number )
     if( !data )
         return LSMASH_ERR_MEMORY_ALLOC;
     data->sample_number = sample_number;
-    if( lsmash_add_entry( stbl->stps->list, data ) < 0 )
+    if( lsmash_list_add_entry( stbl->stps->list, data ) < 0 )
     {
         lsmash_free( data );
         return LSMASH_ERR_MEMORY_ALLOC;
@@ -329,7 +329,7 @@ static int isom_add_sdtp_entry( isom_box_t *parent, lsmash_sample_property_t *pr
     data->sample_depends_on     = prop->independent & 0x03;
     data->sample_is_depended_on = prop->disposable  & 0x03;
     data->sample_has_redundancy = prop->redundant   & 0x03;
-    if( lsmash_add_entry( sdtp->list, data ) < 0 )
+    if( lsmash_list_add_entry( sdtp->list, data ) < 0 )
     {
         lsmash_free( data );
         return LSMASH_ERR_MEMORY_ALLOC;
@@ -346,7 +346,7 @@ static int isom_add_co64_entry( isom_stbl_t *stbl, uint64_t chunk_offset )
     if( !data )
         return LSMASH_ERR_MEMORY_ALLOC;
     data->chunk_offset = chunk_offset;
-    if( lsmash_add_entry( stbl->stco->list, data ) < 0 )
+    if( lsmash_list_add_entry( stbl->stco->list, data ) < 0 )
     {
         lsmash_free( data );
         return LSMASH_ERR_MEMORY_ALLOC;
@@ -395,7 +395,7 @@ static int isom_add_stco_entry( isom_stbl_t *stbl, uint64_t chunk_offset )
     if( !data )
         return LSMASH_ERR_MEMORY_ALLOC;
     data->chunk_offset = (uint32_t)chunk_offset;
-    if( lsmash_add_entry( stbl->stco->list, data ) < 0 )
+    if( lsmash_list_add_entry( stbl->stco->list, data ) < 0 )
     {
         lsmash_free( data );
         return LSMASH_ERR_MEMORY_ALLOC;
@@ -479,7 +479,7 @@ static isom_rap_entry_t *isom_add_rap_group_entry( isom_sgpd_t *sgpd )
     data->description_length        = 0;
     data->num_leading_samples_known = 0;
     data->num_leading_samples       = 0;
-    if( lsmash_add_entry( sgpd->list, data ) < 0 )
+    if( lsmash_list_add_entry( sgpd->list, data ) < 0 )
     {
         lsmash_free( data );
         return NULL;
@@ -496,7 +496,7 @@ static isom_roll_entry_t *isom_add_roll_group_entry( isom_sgpd_t *sgpd, int16_t 
         return NULL;
     data->description_length = 0;
     data->roll_distance      = roll_distance;
-    if( lsmash_add_entry( sgpd->list, data ) < 0 )
+    if( lsmash_list_add_entry( sgpd->list, data ) < 0 )
     {
         lsmash_free( data );
         return NULL;
@@ -513,7 +513,7 @@ static isom_group_assignment_entry_t *isom_add_group_assignment_entry( isom_sbgp
         return NULL;
     data->sample_count            = sample_count;
     data->group_description_index = group_description_index;
-    if( lsmash_add_entry( sbgp->list, data ) < 0 )
+    if( lsmash_list_add_entry( sbgp->list, data ) < 0 )
     {
         lsmash_free( data );
         return NULL;
@@ -656,7 +656,7 @@ static int isom_update_mdhd_duration( isom_trak_t *trak, uint32_t last_sample_de
         else
         {
             /* Remove the last entry. */
-            if( (err = lsmash_remove_entry_tail( stts->list, NULL )) < 0 )
+            if( (err = lsmash_list_remove_entry_tail( stts->list )) < 0 )
                 return err;
             /* copy the previous sample_delta. */
             ++ ((isom_stts_entry_t *)stts->list->tail->data)->sample_count;
@@ -3108,7 +3108,7 @@ int isom_rap_grouping_established( isom_rap_group_t *group, int num_leading_samp
         {
             /* The same description already exists.
              * Remove the latest random access entry. */
-            lsmash_remove_entry_tail( sgpd->list, NULL );
+            lsmash_list_remove_entry_tail( sgpd->list );
             /* Replace assigned group_description_index with the one corresponding the same description. */
             if( group->assignment->group_description_index == 0 )
             {
@@ -3319,8 +3319,8 @@ static int isom_deduplicate_roll_group( isom_sbgp_t *sbgp, lsmash_entry_list_t *
             lsmash_entry_t *next_entry = entry->next;
             prev_assignment->sample_count += group->assignment->sample_count;
             int err;
-            if( (err = lsmash_remove_entry( sbgp->list, current_group_number, NULL )) < 0
-             || (err = lsmash_remove_entry_direct( pool, entry, NULL ))               < 0 )
+            if( (err = lsmash_list_remove_entry( sbgp->list, current_group_number )) < 0
+             || (err = lsmash_remove_entry_direct( pool, entry, NULL ))              < 0 )
                 return err;
             entry = next_entry;
         }
@@ -3459,7 +3459,7 @@ int isom_group_roll_recovery( isom_box_t *parent, isom_cache_t *cache, lsmash_sa
     lsmash_entry_list_t *pool = cache->roll.pool;
     if( !pool )
     {
-        pool = lsmash_create_entry_list();
+        pool = lsmash_list_create_simple();
         if( !pool )
             return LSMASH_ERR_MEMORY_ALLOC;
         cache->roll.pool = pool;
@@ -3497,7 +3497,7 @@ int isom_group_roll_recovery( isom_box_t *parent, isom_cache_t *cache, lsmash_sa
         group->prev_is_recovery_start = is_recovery_start;
         group->is_fragment            = is_fragment;
         group->assignment             = isom_add_group_assignment_entry( sbgp, 1, 0 );
-        if( !group->assignment || lsmash_add_entry( pool, group ) < 0 )
+        if( !group->assignment || lsmash_list_add_entry( pool, group ) < 0 )
         {
             lsmash_free( group );
             return LSMASH_ERR_MEMORY_ALLOC;

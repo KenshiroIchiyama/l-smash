@@ -254,7 +254,7 @@ static lsmash_audio_summary_t *dts_create_summary( dts_info_t *info )
     }
     specific->data.unstructured = lsmash_create_dts_specific_info( param, &specific->size );
     if( !specific->data.unstructured
-     || lsmash_add_entry( &summary->opaque->list, specific ) < 0 )
+     || lsmash_list_add_entry( &summary->opaque->list, specific ) < 0 )
     {
         lsmash_cleanup_summary( (lsmash_summary_t *)summary );
         lsmash_destroy_codec_specific_data( specific );
@@ -327,7 +327,7 @@ static int dts_importer_probe( importer_t *importer )
     if( importer->status != IMPORTER_EOF )
         importer->status = IMPORTER_OK;
     dts_imp->au_number = 0;
-    if( lsmash_add_entry( importer->summaries, summary ) < 0 )
+    if( lsmash_list_add_entry( importer->summaries, summary ) < 0 )
     {
         lsmash_cleanup_summary( (lsmash_summary_t *)summary );
         err = LSMASH_ERR_MEMORY_ALLOC;
