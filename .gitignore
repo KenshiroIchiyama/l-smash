@@ -50,3 +50,7 @@ Release/
 CLIRelease/
 *.sdf
 *.opensdf
+/*.db
+/.vs/L-SMASH/v14/*.suo
+/cli/*.user
+/*.opendb
