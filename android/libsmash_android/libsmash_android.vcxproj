@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\codecs\a52.c" />
+    <ClCompile Include="..\..\codecs\alac.c" />
+    <ClCompile Include="..\..\codecs\description.c" />
+    <ClCompile Include="..\..\codecs\dts.c" />
+    <ClCompile Include="..\..\codecs\h264.c" />
+    <ClCompile Include="..\..\codecs\hevc.c" />
+    <ClCompile Include="..\..\codecs\id.c" />
+    <ClCompile Include="..\..\codecs\mp4a.c" />
+    <ClCompile Include="..\..\codecs\mp4sys.c" />
+    <ClCompile Include="..\..\codecs\mp4v.c" />
+    <ClCompile Include="..\..\codecs\nalu.c" />
+    <ClCompile Include="..\..\codecs\qt_wfex.c" />
+    <ClCompile Include="..\..\codecs\vc1.c" />
+    <ClCompile Include="..\..\codecs\wma.c" />
+    <ClCompile Include="..\..\common\alloc.c" />
+    <ClCompile Include="..\..\common\bits.c" />
+    <ClCompile Include="..\..\common\bytes.c" />
+    <ClCompile Include="..\..\common\list.c" />
+    <ClCompile Include="..\..\common\multibuf.c" />
+    <ClCompile Include="..\..\common\osdep.c" />
+    <ClCompile Include="..\..\common\utils.c" />
+    <ClCompile Include="..\..\core\box.c" />
+    <ClCompile Include="..\..\core\box_default.c" />
+    <ClCompile Include="..\..\core\box_type.c" />
+    <ClCompile Include="..\..\core\chapter.c" />
+    <ClCompile Include="..\..\core\file.c" />
+    <ClCompile Include="..\..\core\fragment.c" />
+    <ClCompile Include="..\..\core\isom.c" />
+    <ClCompile Include="..\..\core\meta.c" />
+    <ClCompile Include="..\..\core\print.c" />
+    <ClCompile Include="..\..\core\read.c" />
+    <ClCompile Include="..\..\core\summary.c" />
+    <ClCompile Include="..\..\core\timeline.c" />
+    <ClCompile Include="..\..\core\write.c" />
+    <ClCompile Include="..\..\importer\a52_imp.c" />
+    <ClCompile Include="..\..\importer\adts_imp.c" />
+    <ClCompile Include="..\..\importer\als_imp.c" />
+    <ClCompile Include="..\..\importer\amr_imp.c" />
+    <ClCompile Include="..\..\importer\dts_imp.c" />
+    <ClCompile Include="..\..\importer\importer.c" />
+    <ClCompile Include="..\..\importer\isobm_imp.c" />
+    <ClCompile Include="..\..\importer\mp3_imp.c" />
+    <ClCompile Include="..\..\importer\nalu_imp.c" />
+    <ClCompile Include="..\..\importer\vc1_imp.c" />
+    <ClCompile Include="..\..\importer\wave_imp.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\codecs\a52.h" />
+    <ClInclude Include="..\..\codecs\description.h" />
+    <ClInclude Include="..\..\codecs\dts.h" />
+    <ClInclude Include="..\..\codecs\h264.h" />
+    <ClInclude Include="..\..\codecs\hevc.h" />
+    <ClInclude Include="..\..\codecs\mp4a.h" />
+    <ClInclude Include="..\..\codecs\mp4sys.h" />
+    <ClInclude Include="..\..\codecs\nalu.h" />
+    <ClInclude Include="..\..\codecs\vc1.h" />
+    <ClInclude Include="..\..\common\bits.h" />
+    <ClInclude Include="..\..\common\bstream.h" />
+    <ClInclude Include="..\..\common\bytes.h" />
+    <ClInclude Include="..\..\common\internal.h" />
+    <ClInclude Include="..\..\common\list.h" />
+    <ClInclude Include="..\..\common\memint.h" />
+    <ClInclude Include="..\..\common\multibuf.h" />
+    <ClInclude Include="..\..\common\osdep.h" />
+    <ClInclude Include="..\..\common\utils.h" />
+    <ClInclude Include="..\..\core\box.h" />
+    <ClInclude Include="..\..\core\file.h" />
+    <ClInclude Include="..\..\core\fragment.h" />
+    <ClInclude Include="..\..\core\print.h" />
+    <ClInclude Include="..\..\core\read.h" />
+    <ClInclude Include="..\..\core\timeline.h" />
+    <ClInclude Include="..\..\core\write.h" />
+    <ClInclude Include="..\..\importer\importer.h" />
+    <ClInclude Include="..\..\lsmash.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{81383a5e-7eeb-47c3-b948-cfe996d826dc}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <RootNamespace>libsmash_android</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>liblsmash</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>liblsmash</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <TargetName>liblsmash</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <TargetName>liblsmash</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <TargetName>liblsmash</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <TargetName>liblsmash</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <TargetName>liblsmash</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <TargetName>liblsmash</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\Android\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
